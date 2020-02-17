@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+<h1 th:text="${session.username}"></h1>
+<a th:href="@{/emp}">查看员工</a>
+<div>
+    <form th:action="@{/emp/idselect}">
+    <input type="text" name="id" placeholder="输入要查找的员工id">
+    <button type="submit">查找</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工管理</title>
+</head>
+<body>
+<a th:href="@{/emp/insert}">添加</a>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>邮箱</th>
+            <th>性别</th>
+            <th>员工id</th>
+            <th>部门</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tr th:each="emp:${emps}">
+        <td th:text="${emp.id}"></td>
+        <td th:text="${emp.lastName}"></td>
+        <td th:text="${emp.email}"></td>
+        <td th:text="${emp.gender}==1?'男':'女'"></td>
+        <td th:text="${emp.userId}"></td>
+        <td th:text="${emp.department}"></td>
+        <td><a th:href="@{/emp/edit/}+${emp.userId}">编辑</a></td>
+        <td><button th:attr="del_uri=@{/emp/delete/}+${emp.userId}" class="deleteBtn">删除</button></td>
+    </tr>
+</table>
+
+<form id="deleteEmpForm" method="post">
+    <input type="hidden" name="_method" value="delete">
+
+</form>
+</body>
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script>
+    $(".deleteBtn").click(function () {
+        $("#deleteEmpForm").submit;
+        return false;
+        
+    })
+</script>
+</html>

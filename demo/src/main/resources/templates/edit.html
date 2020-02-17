@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工编辑</title>
+</head>
+<body>
+<form th:action="@{/emp/update}" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="id" th:if="${emps!=null}" th:value="${emps.id}"/>
+    姓名:<input name="lastName" type="text" th:value="${emps!=null}?${emps.lastName}"><br>
+    邮箱:<input type="text" name="email" th:value="${emps!=null}?${emps.email}"><br>
+    性别:<input type="radio" name="gender" value="1" th:checked="${emps!=null}?${emps.gender==1}"><label>男</label>
+         <input type="radio" name="gender" value="0" th:checked="${emps!=null}?${emps.gender==0}"><label>女</label><br>
+    员工ID:<input type="text" name="userId" th:value="${emps!=null}?${emps.userId}"><br>
+    员工部门：
+    <select th:each="dep:${deps}">
+        <option th:text="${dep.departmentName}"></option>
+        <option th:text="${emps.department}"></option>
+    </select>
+    <input type="submit" th:value="ok">
+    <button type="submit" th:text="${emps!=null}?'修改':'添加'" >确认修改</button>
+
+</form>
+</body>
+</html>
